@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>BRFD — Your world. In 5 minutes.</title>
+  <meta name="description" content="A daily audio briefing built around your life. Your topics, your voice, your channel. Delivered on the app, WhatsApp or Telegram. No doomscroll." />
+  <meta name="theme-color" content="#0A0A0A" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="BRFD — Your world. In 5 minutes." />
+  <meta property="og:description" content="A daily audio briefing built around your life. Your topics, your voice, your channel." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://brfd.ai" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink:    '#0A0A0A',
+            ink2:   '#111111',
+            line:   '#1E1E1E',
+            mute:   '#8A8A8A',
+            accent: '#E8593C',
+            accent2:'#FF6B47',
+          },
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          },
+          boxShadow: {
+            glow: '0 0 60px -10px rgba(232,89,60,0.45)',
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html, body { background: #0A0A0A; color: #F5F5F5; }
+    body { font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    .grain::before {
+      content: "";
+      position: absolute; inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size: 3px 3px;
+      pointer-events: none;
+      mix-blend-mode: overlay;
+    }
+    .hero-glow {
+      background:
+        radial-gradient(60% 50% at 50% 0%, rgba(232,89,60,0.35) 0%, rgba(232,89,60,0) 60%),
+        radial-gradient(40% 30% at 80% 20%, rgba(232,89,60,0.18) 0%, rgba(232,89,60,0) 60%);
+    }
+    .divider-dot::before {
+      content: "";
+      display: inline-block;
+      width: 6px; height: 6px; border-radius: 999px;
+      background: #E8593C; margin-right: 10px; transform: translateY(-2px);
+    }
+    .chip {
+      border: 1px solid #1E1E1E;
+      background: #111111;
+    }
+    .chip.off { opacity: 0.35; text-decoration: line-through; }
+    .btn-primary {
+      background: #E8593C; color: #0A0A0A;
+    }
+    .btn-primary:hover { background: #FF6B47; }
+    .btn-ghost {
+      border: 1px solid #1E1E1E; color: #F5F5F5;
+    }
+    .btn-ghost:hover { border-color: #E8593C; color: #E8593C; }
+    .card {
+      background: linear-gradient(180deg, #111 0%, #0C0C0C 100%);
+      border: 1px solid #1E1E1E;
+    }
+    .card:hover { border-color: #2A2A2A; }
+    .waveform span {
+      display: inline-block;
+      width: 3px;
+      margin: 0 2px;
+      background: #E8593C;
+      border-radius: 2px;
+      animation: wave 1.2s ease-in-out infinite;
+    }
+    .waveform span:nth-child(2)  { animation-delay: .1s; }
+    .waveform span:nth-child(3)  { animation-delay: .2s; }
+    .waveform span:nth-child(4)  { animation-delay: .3s; }
+    .waveform span:nth-child(5)  { animation-delay: .4s; }
+    .waveform span:nth-child(6)  { animation-delay: .5s; }
+    .waveform span:nth-child(7)  { animation-delay: .6s; }
+    .waveform span:nth-child(8)  { animation-delay: .7s; }
+    .waveform span:nth-child(9)  { animation-delay: .8s; }
+    .waveform span:nth-child(10) { animation-delay: .9s; }
+    @keyframes wave {
+      0%, 100% { height: 8px; }
+      50%      { height: 32px; }
+    }
+    .num {
+      font-variant-numeric: tabular-nums;
+      font-feature-settings: "tnum";
+    }
+  </style>
+</head>
+<body class="min-h-screen">
+
+  <!-- NAV -->
+  <header class="relative z-20">
+    <div class="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2">
+        <span class="text-2xl font-black tracking-tight">BRFD<span class="text-accent">.</span></span>
+      </a>
+      <nav class="hidden md:flex items-center gap-8 text-sm text-mute">
+        <a href="#how" class="hover:text-white transition">How it works</a>
+        <a href="#channels" class="hover:text-white transition">Channels</a>
+        <a href="#voices" class="hover:text-white transition">Voices</a>
+      </nav>
+      <a href="#download" class="btn-primary px-4 py-2 rounded-full text-sm font-semibold">Download</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 hero-glow"></div>
+    <div class="relative max-w-6xl mx-auto px-6 pt-12 pb-24 md:pt-20 md:pb-32">
+      <div class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-mute border border-line rounded-full px-3 py-1.5 mb-8">
+        <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+        Personal audio news · DACH
+      </div>
+
+      <h1 class="text-5xl md:text-7xl lg:text-8xl font-black leading-[0.95] tracking-tight max-w-4xl">
+        Your world.<br/>
+        In <span class="text-accent">5 minutes.</span>
+      </h1>
+
+      <p class="mt-6 text-lg md:text-xl text-mute max-w-2xl leading-relaxed">
+        A daily audio briefing built around <em class="not-italic text-white">your</em> life.
+        Your topics. Your voice. Your channel. No feed. No doomscroll. No noise.
+      </p>
+
+      <div class="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <a href="#download" class="btn-primary px-7 py-4 rounded-full font-semibold text-base shadow-glow">
+          Download the App →
+        </a>
+        <a href="#how" class="btn-ghost px-7 py-4 rounded-full font-semibold text-base">
+          How it works
+        </a>
+      </div>
+
+      <!-- Mini audio player mockup -->
+      <div class="mt-16 max-w-md card rounded-2xl p-5">
+        <div class="flex items-center gap-4">
+          <button class="w-12 h-12 rounded-full bg-accent flex items-center justify-center shrink-0" aria-label="Play">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+          <div class="flex-1 min-w-0">
+            <div class="text-xs uppercase tracking-widest text-accent mb-1">Today's briefing</div>
+            <div class="text-sm font-semibold truncate">Markets, AI, and your Bundesliga recap</div>
+            <div class="text-xs text-mute mt-1 num">04:52 · 7 stories · Professional voice</div>
+          </div>
+          <div class="waveform h-8 flex items-end" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STOP THE SCROLL -->
+  <section class="relative border-t border-line">
+    <div class="max-w-6xl mx-auto px-6 py-20 md:py-28 grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+      <div>
+        <div class="text-xs uppercase tracking-[0.2em] text-accent mb-4 divider-dot">The problem</div>
+        <h2 class="text-4xl md:text-5xl font-black leading-tight tracking-tight">
+          Stop scrolling<br/>random news.
+        </h2>
+        <p class="mt-6 text-mute text-lg leading-relaxed">
+          Endless feeds. Clickbait headlines. Notifications that hijack your morning.
+          You don't need <em class="not-italic text-white">more</em> news — you need the <em class="not-italic text-white">right</em> news,
+          told to you clearly, in the time it takes to make coffee.
+        </p>
+      </div>
+      <div class="card rounded-2xl p-8">
+        <div class="text-xs uppercase tracking-widest text-mute mb-4">The average morning</div>
+        <div class="space-y-3">
+          <div class="flex items-center justify-between text-sm"><span>News apps opened</span><span class="num text-white">6×</span></div>
+          <div class="h-px bg-line"></div>
+          <div class="flex items-center justify-between text-sm"><span>Minutes lost to feeds</span><span class="num text-white">42 min</span></div>
+          <div class="h-px bg-line"></div>
+          <div class="flex items-center justify-between text-sm"><span>Stories actually remembered</span><span class="num text-white">~2</span></div>
+          <div class="h-px bg-line"></div>
+          <div class="flex items-center justify-between text-sm"><span>Anxiety installed</span><span class="num text-accent">∞</span></div>
+        </div>
+        <div class="mt-6 pt-6 border-t border-line flex items-center justify-between">
+          <span class="text-sm text-mute">With BRFD</span>
+          <span class="text-sm font-semibold text-accent">5 min. Done.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how" class="relative border-t border-line">
+    <div class="max-w-6xl mx-auto px-6 py-20 md:py-28">
+      <div class="text-xs uppercase tracking-[0.2em] text-accent mb-4 divider-dot">How it works</div>
+      <h2 class="text-4xl md:text-5xl font-black leading-tight tracking-tight max-w-3xl">
+        Four steps. One briefing. Every day.
+      </h2>
+
+      <div class="mt-14 grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="card rounded-2xl p-6">
+          <div class="text-accent text-sm font-mono mb-6">01</div>
+          <h3 class="text-xl font-bold mb-2">Pick your world</h3>
+          <p class="text-sm text-mute leading-relaxed">World politics, markets, your industry, your hobby, your football club. As broad or as niche as you want.</p>
+        </div>
+        <div class="card rounded-2xl p-6">
+          <div class="text-accent text-sm font-mono mb-6">02</div>
+          <h3 class="text-xl font-bold mb-2">Cut the noise</h3>
+          <p class="text-sm text-mute leading-relaxed">Deselect what drains you. Mute wars, celebrity gossip, politics — whatever you don't want in your head today.</p>
+        </div>
+        <div class="card rounded-2xl p-6">
+          <div class="text-accent text-sm font-mono mb-6">03</div>
+          <h3 class="text-xl font-bold mb-2">Choose a voice</h3>
+          <p class="text-sm text-mute leading-relaxed">Professional, optimistic, action-packed, calm. Pick a host that fits the way you want to start your day.</p>
+        </div>
+        <div class="card rounded-2xl p-6">
+          <div class="text-accent text-sm font-mono mb-6">04</div>
+          <h3 class="text-xl font-bold mb-2">Get briefed</h3>
+          <p class="text-sm text-mute leading-relaxed">A 5-minute audio brief, delivered daily — on the app, WhatsApp or Telegram. Wherever you already are.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOPIC PICKER (visual) -->
+  <section class="relative border-t border-line">
+    <div class="max-w-6xl mx-auto px-6 py-20 md:py-28 grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+      <div>
+        <div class="text-xs uppercase tracking-[0.2em] text-accent mb-4 divider-dot">Hyperpersonalised</div>
+        <h2 class="text-4xl md:text-5xl font-black leading-tight tracking-tight">
+          Your life.<br/>
+          Your interests.<br/>
+          Your news.
+        </h2>
+        <p class="mt-6 text-mute text-lg leading-relaxed">
+          Not a category. Not a cluster. <em class="not-italic text-white">You.</em>
+          BRFD learns what you care about — and what you don't — and builds a briefing only you would get.
+        </p>
+        <ul class="mt-6 space-y-2 text-sm text-mute">
+          <li class="flex gap-3"><span class="text-accent">✓</span> World &amp; local headlines</li>
+          <li class="flex gap-3"><span class="text-accent">✓</span> Professional market updates</li>
+          <li class="flex gap-3"><span class="text-accent">✓</span> Your industry &amp; competitors</li>
+          <li class="flex gap-3"><span class="text-accent">✓</span> Niche interests &amp; deep cuts</li>
+        </ul>
+      </div>
+
+      <div class="card rounded-2xl p-8">
+        <div class="text-xs uppercase tracking-widest text-mute mb-5">Your topics</div>
+        <div class="flex flex-wrap gap-2">
+          <span class="chip px-3 py-1.5 rounded-full text-sm">Global markets</span>
+          <span class="chip px-3 py-1.5 rounded-full text-sm">AI &amp; tech</span>
+          <span class="chip px-3 py-1.5 rounded-full text-sm">DACH startups</span>
+          <span class="chip px-3 py-1.5 rounded-full text-sm">FC Bayern</span>
+          <span class="chip px-3 py-1.5 rounded-full text-sm">Formula 1</span>
+          <span class="chip px-3 py-1.5 rounded-full text-sm">Climate tech</span>
+          <span class="chip off px-3 py-1.5 rounded-full text-sm">War &amp; conflict</span>
+          <span class="chip px-3 py-1.5 rounded-full text-sm">Crypto</span>
+          <span class="chip off px-3 py-1.5 rounded-full text-sm">Celebrities</span>
+          <span class="chip px-3 py-1.5 rounded-full text-sm">Berlin local</span>
+          <span class="chip px-3 py-1.5 rounded-full text-sm">Architecture</span>
+          <span class="chip off px-3 py-1.5 rounded-full text-sm">Politics DE</span>
+        </div>
+        <div class="mt-6 pt-6 border-t border-line flex items-center justify-between text-sm">
+          <span class="text-mute">Tap to mute what you don't want</span>
+          <span class="text-accent font-semibold">9 on · 3 off</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VOICES -->
+  <section id="voices" class="relative border-t border-line">
+    <div class="max-w-6xl mx-auto px-6 py-20 md:py-28">
+      <div class="text-xs uppercase tracking-[0.2em] text-accent mb-4 divider-dot">Choose your voice</div>
+      <h2 class="text-4xl md:text-5xl font-black leading-tight tracking-tight max-w-3xl">
+        A host that sounds like the morning you want.
+      </h2>
+
+      <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="card rounded-2xl p-6">
+          <div class="w-10 h-10 rounded-full bg-accent/20 border border-accent/40 flex items-center justify-center mb-5">
+            <span class="text-accent text-lg">◆</span>
+          </div>
+          <h3 class="text-lg font-bold mb-1">Professional</h3>
+          <p class="text-sm text-mute">Newsroom clarity. Fact-first. Like your favourite morning anchor.</p>
+        </div>
+        <div class="card rounded-2xl p-6">
+          <div class="w-10 h-10 rounded-full bg-accent/20 border border-accent/40 flex items-center justify-center mb-5">
+            <span class="text-accent text-lg">☀</span>
+          </div>
+          <h3 class="text-lg font-bold mb-1">Optimist</h3>
+          <p class="text-sm text-mute">Warm, grounded, hopeful. Starts your day on the right foot.</p>
+        </div>
+        <div class="card rounded-2xl p-6">
+          <div class="w-10 h-10 rounded-full bg-accent/20 border border-accent/40 flex items-center justify-center mb-5">
+            <span class="text-accent text-lg">⚡</span>
+          </div>
+          <h3 class="text-lg font-bold mb-1">Action</h3>
+          <p class="text-sm text-mute">Fast, punchy, high energy. For people who jump out of bed.</p>
+        </div>
+        <div class="card rounded-2xl p-6">
+          <div class="w-10 h-10 rounded-full bg-accent/20 border border-accent/40 flex items-center justify-center mb-5">
+            <span class="text-accent text-lg">○</span>
+          </div>
+          <h3 class="text-lg font-bold mb-1">Calm</h3>
+          <p class="text-sm text-mute">Slow, considered, unhurried. News without the adrenaline.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHANNELS -->
+  <section id="channels" class="relative border-t border-line">
+    <div class="max-w-6xl mx-auto px-6 py-20 md:py-28">
+      <div class="text-xs uppercase tracking-[0.2em] text-accent mb-4 divider-dot">Your channel</div>
+      <h2 class="text-4xl md:text-5xl font-black leading-tight tracking-tight max-w-3xl">
+        Delivered where you already are.
+      </h2>
+      <p class="mt-6 text-mute text-lg max-w-2xl">
+        No new habit to build. Get your briefing in the app you check first every morning.
+      </p>
+
+      <div class="mt-14 grid md:grid-cols-3 gap-5">
+        <div class="card rounded-2xl p-8">
+          <div class="text-xs uppercase tracking-widest text-accent mb-3">App</div>
+          <h3 class="text-2xl font-bold mb-2">The BRFD App</h3>
+          <p class="text-sm text-mute leading-relaxed">iOS &amp; Android. The full experience — archive, playback control, offline.</p>
+        </div>
+        <div class="card rounded-2xl p-8">
+          <div class="text-xs uppercase tracking-widest text-accent mb-3">WhatsApp</div>
+          <h3 class="text-2xl font-bold mb-2">On WhatsApp</h3>
+          <p class="text-sm text-mute leading-relaxed">A voice note every morning. Tap, listen, done. Zero friction.</p>
+        </div>
+        <div class="card rounded-2xl p-8">
+          <div class="text-xs uppercase tracking-widest text-accent mb-3">Telegram</div>
+          <h3 class="text-2xl font-bold mb-2">On Telegram</h3>
+          <p class="text-sm text-mute leading-relaxed">Your briefing in your favourite channel. Same quality, same 5 minutes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section id="download" class="relative border-t border-line">
+    <div class="max-w-4xl mx-auto px-6 py-24 md:py-36 text-center">
+      <div class="text-xs uppercase tracking-[0.2em] text-accent mb-5">Ready?</div>
+      <h2 class="text-5xl md:text-7xl font-black leading-[0.95] tracking-tight">
+        Your world.<br/>
+        In 5 minutes.<br/>
+        <span class="text-accent">Starting tomorrow.</span>
+      </h2>
+      <p class="mt-8 text-mute text-lg max-w-xl mx-auto">
+        Free to start. No credit card. Cancel anytime. Your first briefing lands in your morning.
+      </p>
+      <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="https://hearo-app.netlify.app" class="btn-primary px-8 py-4 rounded-full font-semibold text-base shadow-glow">
+          Download the App →
+        </a>
+        <a href="https://hearo-app.netlify.app" class="btn-ghost px-8 py-4 rounded-full font-semibold text-base">
+          Open on web
+        </a>
+      </div>
+      <div class="mt-8 text-xs text-mute uppercase tracking-widest">iOS · Android · Web · WhatsApp · Telegram</div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-line">
+    <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-2">
+        <span class="text-xl font-black tracking-tight">BRFD<span class="text-accent">.</span></span>
+        <span class="text-xs text-mute ml-3">© 2026 · Made in DACH</span>
+      </div>
+      <nav class="flex items-center gap-6 text-xs text-mute">
+        <a href="/impressum.html" class="hover:text-white">Impressum</a>
+        <a href="/privacy.html" class="hover:text-white">Privacy</a>
+        <a href="mailto:hello@brfd.ai" class="hover:text-white">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>
